@@ -1,0 +1,486 @@
+
+
+#################################################################################################################################################################
+
+# **Paso a Paso: ACTIVIDAD1 - Semana 1.**
+
+#################################################################################################################################################################
+
+## **Paso 1. Entra a tu Drive y en la carpeta Colab Notebooks abre un Archivo Colab.**
+
+#################################################################################################################################################################
+
+## **Paso 2. Nombra tu Archivo con tu Nombre, por ejemplo: Julio_Hurtado**
+
+#################################################################################################################################################################
+
+## **Paso 3. Agrega una linea de Texto y copia lo siguiente:**
+
+#################################################################################################################################################################
+
+# **CURSO DE CIENCIA DE DATOS - UTB**
+## **Realizado por: "Escribe tu Nombre completo (Dos Nombres - Dos Apellidos)"**
+## **Con mi Profesores: "Escribe Nombre de Tu Profesor"**
+
+
+#################################################################################################################################################################
+
+## **Paso 4. Agrega una linea de código para empezar**
+
+#################################################################################################################################################################
+
+## **Paso 5. En la linea de código copia la información siguiente - Selecciona todo lo de abajo sin omitir nada:**
+ 
+
+#################################################################################################################################################################
+
+
+
+#----Comienza aqui----
+
+import pandas as pd
+
+# Definición de los datos
+data = {
+    "CURSO": ["ESTADISTICA I",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "ESTADISTICA I",	"ESTADISTICA I",	"PROBABILIDAD ",	"PROBABILIDAD ",	"ESTADISTICA I",	"ESTADISTICA I",
+              "ESTADISTICA I",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"ESTADISTICA I",	"ESTADISTICA I",	"PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD ",	"ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",
+              "PROBABILIDAD ",	"ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",
+              "ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",	"PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD ",
+              "PROBABILIDAD ",	"ESTADISTICA I",	"ESTADISTICA I",	"ESTADISTICA I",	"PROBABILIDAD ",	"PROBABILIDAD ",
+              "ESTADISTICA I",	"PROBABILIDAD ",	"ESTADISTICA I",	"PROBABILIDAD "],
+
+    "ASISTENCIA": ["50",	"50",	"35",	"60",	"50",	"40",	"50",	"55",	"60",	"40",	"45",	"55",	"60",	"55",	"60",
+                   "60",	"50",	"50",	"60",	"60",	"60",	"60",	"60",	"60",	"45",	"60",	"60",	"40",	"60",	"40",
+                   "60",	"60",	"55",	"45",	"60",	"60",	"45",	"60",	"60",	"60",	"60",	"55",	"60",	"60",	"60",
+                   "60",	"60",	"60",	"45",	"45",	"60",	"55",	"60",	"35",	"60",	"30",	"60",	"60",	"40",	"60",
+                   "50",	"55",	"35",	"40",	"40",	"55",	"35",	"45",	"50",	"55",	"35",	"45",	"40",	"40",	"25",	"50"],
+
+    "PROGRAMA": ["PSICOLOGÍA",	"FINANZAS",	"FINANZAS",	"FINANZAS",	"FINANZAS",	"FINANZAS",	"COMUNICACIÓN",	"COMUNICACIÓN",
+                 "MECATRONICA",	"FINANZAS",	"PSICOLOGÍA",	"PSICOLOGÍA",	"COMUNICACIÓN",	"MECANICA",	"MECANICA",	"ELECTRICA",
+                 "COMUNICACIÓN",	"FINANZAS",	"INDUSTRIAL",	"INDUSTRIAL",	"SISTEMAS",	"COMUNICACIÓN",	"MECATRONICA",	"C_DATOS",
+                 "FINANZAS",	"COMUNICACIÓN",	"PSICOLOGÍA",	"CIVIL",	"PSICOLOGÍA",	"MECANICA",	"SISTEMAS",	"SISTEMAS",
+                 "FINANZAS",	"SISTEMAS",	"FINANZAS",	"SISTEMAS",	"FINANZAS",	"QUIMICA",	"FINANZAS",	"SISTEMAS",
+                 "FINANZAS",	"FINANZAS",	"INDUSTRIAL",	"FINANZAS",	"SISTEMAS",	"INDUSTRIAL",	"SISTEMAS",	"FINANZAS",
+                 "NAVAL",	"PSICOLOGÍA",	"SISTEMAS",	"PSICOLOGÍA",	"DERECHO",	"DERECHO",	"BIOMEDICA",	"DERECHO",
+                 "DERECHO",	"DERECHO",	"DERECHO",	"DERECHO",	"DERECHO",	"DERECHO",	"DERECHO",	"C_DATOS",
+                 "DERECHO",	"SISTEMAS",	"C_DATOS",	"DERECHO",	"PSICOLOGÍA",	"PSICOLOGÍA",	"ECONOMIA",	"ELECTRICA",
+                 "PSICOLOGÍA",	"BIOMEDICA",	"DERECHO",	"CONTADURIA"],
+
+    "EDAD": ["19",	"18",	"18",	"21",	"18",	"18",	"18",	"17",	"18",	"22",	"18",	"18",	"18",	"18",	"18",	"22",
+             "21",	"19",	"18",	"19",	"18",	"19",	"18",	"17",	"19",	"20",	"19",	"18",	"17",	"18",	"20",	"19",
+             "20",	"22",	"18",	"19",	"19",	"18",	"19",	"20",	"19",	"18",	"17",	"19",	"19",	"19",	"19",	"18",
+             "17",	"18",	"19",	"20",	"23",	"18",	"18",	"20",	"18",	"18",	"18",	"18",	"18",	"19",	"17",	"17",
+             "20",	"19",	"18",	"19",	"19",	"21",	"19",	"21",	"17",	"19",	"18",	"18"],
+
+    "URBANO": ["SI",	"SI",	"SI",	"SI",	"SI",	"SI",	"NO",	"SI",	"SI",	"SI",	"NO",	"NO",	"SI",	"SI",	"SI",	"NO",
+               "SI",	"NO",	"NO",	"SI",	"NO",	"NO",	"SI",	"SI",	"SI",	"NO",	"SI",	"SI",	"NO",	"NO",	"SI",	"NO",
+               "SI",	"NO",	"SI",	"SI",	"NO",	"NO",	"NO",	"SI",	"SI",	"NO",	"SI",	"SI",	"SI",	"NO",	"SI",	"NO",
+               "SI",	"NO",	"NO",	"SI",	"SI",	"SI",	"NO",	"SI",	"NO",	"SI",	"SI",	"SI",	"SI",	"NO",	"SI",	"SI",
+               "SI",	"SI",	"SI",	"SI",	"NO",	"SI",	"SI",	"NO",	"SI",	"SI",	"SI",	"NO"],
+
+    "PESO": ["45",	"56",	"67",	"69",	"50",	"61",	"50",	"59",	"70",	"73",	"65",	"65",	"57",	"70",	"80",	"70",
+             "62",	"57",	"60",	"58",	"65",	"72",	"77",	"71",	"48",	"90",	"67",	"55",	"67",	"72",	"67",	"102",
+             "55",	"60",	"60",	"75",	"76",	"55",	"48",	"88",	"50",	"59",	"60",	"60",	"64",	"53",	"49",	"70",
+             "80",	"42",	"59",	"64",	"65",	"80",	"62",	"55",	"60",	"53",	"62",	"69",	"60",	"76",	"78",	"70",
+             "78",	"52",	"55",	"48",	"82",	"65",	"65",	"50",	"50",	"54",	"55",	"60"],
+
+
+    "ESTATURA": ["163",	"160",	"173",	"180",	"158",	"163",	"178",	"160",	"175",	"180",	"174",	"161",
+                 "164",	"178",	"187",	"163",	"167",	"154",	"177",	"164",	"170",	"169",	"175",	"170",
+                 "166",	"186",	"171",	"165",	"169",	"181",	"160",	"179",	"160",	"161",	"171",	"173",
+                 "168",	"167",	"166",	"175",	"155",	"176",	"153",	"158",	"172",	"175",	"158",	"172",
+                 "192",	"155",	"166",	"169",	"152",	"185",	"168",	"164",	"165",	"154",	"164",	"174",
+                 "159",	"164",	"180",	"163",	"170",	"174",	"157",	"167",	"175",	"164",	"172",	"155",
+                 "165",	"164",	"160",	"170"],
+
+    "TRANSPORTE": ["Mototaxi",	"Particular",	"Transcaribe",	"Taxi",	"Taxi",	"Particular",	"Transcaribe",	"Transcaribe",
+                   "bus",	"Mototaxi",	"Transcaribe",	"Mototaxi",	"Particular",	"Mototaxi",	"Mototaxi",	"Mototaxi",
+                   "Transcaribe",	"Transcaribe",	"Particular",	"Transcaribe",	"Transcaribe",	"Particular",	"Transcaribe",	"Transcaribe",
+                   "Transcaribe",	"Transcaribe",	"Mototaxi",	"Transcaribe",	"Mototaxi",	"Particular",	"Transcaribe",	"bus",
+                   "Transcaribe",	"bus",	"Transcaribe",	"Transcaribe",	"bus",	"Mototaxi",	"Particular",	"Transcaribe",
+                   "Mototaxi",	"Transcaribe",	"Transcaribe",	"Transcaribe",	"Transcaribe",	"Mototaxi",	"Transcaribe",	"bus",
+                   "Particular",	"Transcaribe",	"bus",	"Transcaribe",	"Transcaribe",	"bus",	"Taxi",	"Mototaxi",	"bus",
+                   "Mototaxi",	"Transcaribe",	"Transcaribe",	"Transcaribe",	"Mototaxi",	"Transcaribe",	"Mototaxi",
+                   "Taxi",	"Transcaribe",	"Transcaribe",	"Particular",	"Transcaribe",	"Transcaribe",	"Mototaxi",	"bus",
+                   "Transcaribe",	"Transcaribe",	"Taxi",	"bus"],
+
+    "SEXO": ["Femenino",	"Femenino",	"Femenino",	"Masculino",	"Femenino",	"Femenino",	"Masculino",	"Femenino",	"Masculino",	"Masculino",
+             "Masculino",	"Femenino",	"Femenino",	"Masculino",	"Masculino",	"Femenino",	"Femenino",	"Femenino",	"Femenino",	"Femenino",
+             "Masculino",	"Femenino",	"Masculino",	"Masculino",	"Femenino",	"Masculino",	"Femenino",	"Masculino",	"Masculino",	"Masculino",
+             "Masculino",	"Masculino",	"Femenino",	"Masculino",	"Femenino",	"Masculino",	"Femenino",	"Femenino",	"Femenino",	"Masculino",
+             "Femenino",	"Femenino",	"Femenino",	"Femenino",	"Masculino",	"Femenino",	"Femenino",	"Femenino",	"Masculino",	"Femenino",
+             "Masculino",	"Femenino",	"Femenino",	"Masculino",	"Femenino",	"Femenino",	"Femenino",	"Femenino",	"Femenino",	"Masculino",
+             "Femenino",	"Masculino",	"Masculino",	"Femenino",	"Masculino",	"Masculino",	"Masculino",	"Femenino",	"Masculino",
+             "Femenino",	"Masculino",	"Femenino",	"Masculino",	"Femenino",	"Femenino",	"Femenino"],
+
+    "ESTRATO": ["II",	"V",	"IV",	"V",	"III",	"V",	"III",	"II",	"I",	"IV",	"IV",	"III",	"III",	"III",	"II",	"I",	"III",
+                "II",	"II",	"V",	"I",	"II",	"II",	"I",	"II",	"IV",	"I",	"II",	"II",	"V",	"III",	"II",	"II",	"I",	"II",	"I",
+                "I",	"I",	"III",	"III",	"III",	"IV",	"II",	"III",	"III",	"II",	"I",	"II",	"II",	"I",	"II",	"I",	"IV",
+                "III",	"III",	"III",	"I",	"III",	"II",	"I",	"II",	"I",	"III",	"II",	"IV",	"IV",	"IV",	"IV",	"II",	"II",	"II",
+                "II",	"III",	"II",	"IV",	"II"],
+    "GR_SANGUINEO": ["O positivo",	"B positivo",	"B positivo",	"O positivo",	"A positivo",	"A positivo",	"O positivo",	"A positivo",
+                     "A positivo",	"B positivo",	"O positivo",	"O positivo",	"O positivo",	"O positivo",	"O negativo",	"O positivo",
+                     "B positivo",	"O positivo",	"O positivo",	"O positivo",	"B positivo",	"A positivo",	"O positivo",	"O positivo",
+                     "O positivo",	"O positivo",	"A positivo",	"O positivo",	"A positivo",	"O positivo",	"B positivo",	"O positivo",
+                     "O positivo",	"A positivo",	"O positivo",	"O negativo",	"O positivo",	"A positivo",	"O positivo",	"A positivo",
+                     "A positivo",	"B positivo",	"O positivo",	"O positivo",	"B positivo",	"O positivo",	"O positivo",	"O positivo",
+                     "O positivo",	"A positivo",	"O positivo",	"O positivo",	"O positivo",	"A positivo",	"O positivo",	"A positivo",
+                     "A positivo",	"A positivo",	"O positivo",	"O positivo",	"A positivo",	"O positivo",	"O positivo",	"O positivo",
+                     "O positivo",	"O positivo",	"A positivo",	"O positivo",	"A positivo",	"O positivo",	"O positivo",	"A positivo",
+                     "O positivo",	"O positivo",	"O positivo",	"O positivo"]
+}
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Mostrar el DataFrame
+df.head(10)  # Muestra las primeras 10 filas
+#---Termina aqui--
+
+
+#################################################################################################################################################################
+
+
+
+
+
+
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------
+
+# **Paso 6. Vamos a construir un diagrama de barras individuales para las variables curso, transporte y sexo, para ello agrega una linea de código y copia lo siguiente:
+
+
+#################################################################################################################################################################
+
+
+
+
+
+#----Comienza aqui----
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Configuración de la figura y los subplots
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+# Función para agregar etiquetas de porcentaje a las barras
+def add_percentage_labels(ax, total_count):
+    for p in ax.patches:
+        height = p.get_height()
+        percentage = height / total_count * 100
+        ax.annotate(f'{percentage:.1f}%',
+                    (p.get_x() + p.get_width() / 2., height),
+                    ha='center', va='bottom', fontsize=10)
+
+# Diagrama de barras para la variable 'CURSO'
+curso_counts = df['CURSO'].value_counts()
+curso_counts.plot(kind='bar', color='skyblue', ax=axes[0])
+axes[0].set_title('Distribución por Curso')
+axes[0].set_xlabel('Curso')
+axes[0].set_ylabel('Frecuencia')
+axes[0].tick_params(axis='x', rotation=45)
+add_percentage_labels(axes[0], curso_counts.sum())
+
+# Diagrama de barras para la variable 'TRANSPORTE'
+transporte_counts = df['TRANSPORTE'].value_counts()
+transporte_counts.plot(kind='bar', color='lightgreen', ax=axes[1])
+axes[1].set_title('Distribución por Transporte')
+axes[1].set_xlabel('Transporte')
+axes[1].set_ylabel('Frecuencia')
+axes[1].tick_params(axis='x', rotation=45)
+add_percentage_labels(axes[1], transporte_counts.sum())
+
+# Diagrama de barras para la variable 'SEXO'
+sexo_counts = df['SEXO'].value_counts()
+sexo_counts.plot(kind='bar', color='lightcoral', ax=axes[2])
+axes[2].set_title('Distribución por Sexo')
+axes[2].set_xlabel('Sexo')
+axes[2].set_ylabel('Frecuencia')
+axes[2].tick_params(axis='x', rotation=0)
+add_percentage_labels(axes[2], sexo_counts.sum())
+
+# Ajustar el layout
+plt.tight_layout()
+plt.show()
+
+
+ #---Termina aqui--
+
+
+
+#################################################################################################################################################################
+
+
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------
+# **Paso 7. Añade etuiquetas para ello agrega una linea de código y copia lo siguiente:**
+
+
+
+#################################################################################################################################################################
+
+
+
+#----Comienza aqui----
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Creación de una tabla de contingencia para las tres variables
+contingency_table = pd.crosstab([df['CURSO'], df['TRANSPORTE']], df['SEXO'])
+
+# Configuración del gráfico
+ax = contingency_table.plot(kind='bar', stacked=True, figsize=(10, 7), color=['lightcoral','lightblue' ])
+plt.title('Distribución por Curso, Transporte y Sexo')
+plt.xlabel('Curso y Transporte')
+plt.ylabel('Frecuencia')
+plt.xticks(rotation=90)
+plt.legend(title='Sexo')
+
+# Añadir etiquetas de datos en las barras
+for p in ax.patches:
+    width = p.get_width()  # Anchura de la barra
+    height = p.get_height()  # Altura de la barra
+    x = p.get_x() + width / 2  # Coordenada X del centro de la barra
+    y = p.get_y() + height / 2  # Coordenada Y del centro de la barra
+    ax.text(x, y, f'{int(height)}', ha='center', va='center')
+
+plt.show()
+
+
+#---Termina aqui--
+
+
+#################################################################################################################################################################
+
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------
+
+
+# **Paso 8. Ahora con porcentajes marginales, para ello agrega una linea de código y copia lo siguiente:**
+
+
+#################################################################################################################################################################
+
+
+
+
+#----Comienza aqui----
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Creación de una tabla de contingencia para las tres variables
+contingency_table = pd.crosstab([df['CURSO'], df['TRANSPORTE']], df['SEXO'])
+
+# Función para agregar etiquetas de porcentaje a las barras
+def add_percentage_labels(ax):
+    # Sumar las alturas de las barras apiladas en cada posición de x
+    totals = contingency_table.sum(axis=1)
+
+    for container in ax.containers:
+        for i, bar in enumerate(container):
+            height = bar.get_height()
+            total = totals[i]  # Total de la barra apilada en la posición i
+            if total > 0:
+                percentage = height / total * 100
+                ax.annotate(f'{percentage:.1f}%',
+                            (bar.get_x() + bar.get_width() / 2., bar.get_y() + height / 2),
+                            ha='center', va='center', fontsize=10, color='black')
+
+# Configuración del gráfico
+ax = contingency_table.plot(kind='bar', stacked=True, figsize=(10, 7), color=['lightblue', 'lightcoral'])
+
+# Agregar etiquetas de porcentaje a las barras
+add_percentage_labels(ax)
+
+# Ajustar el gráfico
+plt.title('Distribución por Curso, Transporte y Sexo')
+plt.xlabel('Curso y Transporte')
+plt.ylabel('Frecuencia')
+plt.xticks(rotation=90)
+plt.legend(title='Sexo')
+plt.tight_layout()
+plt.show()
+
+
+#---Termina aqui--
+
+#################################################################################################################################################################
+
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------
+
+# **Paso 9. Ahora los graficos de torta, para ello agrega una linea de código y copia lo siguiente:**
+
+
+
+#################################################################################################################################################################
+
+
+#----Comienza aqui----
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Creación de la tabla de contingencia para SEXO vs TRANSPORTE
+contingency_table = pd.crosstab(df['TRANSPORTE'], df['SEXO'])
+
+# Calcular los porcentajes para cada categoría
+contingency_table_percentage = contingency_table.div(contingency_table.sum(axis=1), axis=0) * 100
+
+# Crear subplots para mostrar cada transporte por separado
+fig, axs = plt.subplots(1, len(contingency_table), figsize=(18, 10))
+
+# Generar un gráfico circular por cada tipo de transporte
+for i, transporte in enumerate(contingency_table.index):
+    axs[i].pie(contingency_table_percentage.loc[transporte],
+               labels=contingency_table.columns,
+               autopct='%1.1f%%',
+               startangle=90,
+               colors=['lightcoral', 'lightblue'])
+    axs[i].set_title(f'Transporte: {transporte}')
+
+plt.suptitle('Distribución por Sexo en función del Transporte')
+plt.show()
+
+
+#---Termina aqui--
+
+
+#################################################################################################################################################################
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------
+
+# **Paso 10. Ahora los graficos de barra para curso Vs Sexo, para ello agrega una linea de código y copia lo siguiente:**
+
+
+
+#################################################################################################################################################################
+
+
+#----Comienza aqui----
+
+
+
+# Creación del DataFrame
+df = pd.DataFrame(data)
+
+# Crear una tabla de contingencia
+contingency_table = pd.crosstab(df['CURSO'], df['SEXO'])
+
+# Convertir las frecuencias a porcentajes
+percentage_table = contingency_table.div(contingency_table.sum(axis=1), axis=0) * 100
+
+# Configuración del gráfico
+fig, ax = plt.subplots(figsize=(10, 7))
+
+# Graficar las barras apiladas con porcentajes
+percentage_table.plot(kind='bar', stacked=True, ax=ax, color=['lightcoral','lightblue' ])
+
+# Agregar etiquetas de porcentaje a las barras
+def add_percentage_labels(ax):
+    for container in ax.containers:
+        for i, patch in enumerate(container):
+            height = patch.get_height()
+            if height > 0:
+                # Calcula la posición y para el texto dentro de la barra
+                y_position = patch.get_y() + height / 2
+                # Añade el porcentaje en el centro de la barra
+                ax.annotate(f'{height:.1f}%',
+                            (patch.get_x() + patch.get_width() / 2., y_position),
+                            ha='center', va='center', fontsize=10)
+
+add_percentage_labels(ax)
+
+# Ajustar el gráfico
+ax.set_title('Distribución por Curso y Sexo (en porcentaje)')
+ax.set_xlabel('Curso')
+ax.set_ylabel('Porcentaje')
+ax.legend(title='Sexo')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+
+
+#---Termina aqui--
+
+#################################################################################################################################################################
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------TURNO PARA TRABAJO INDEPENDIENTES:  ESTO TE TOCA HACERLO AHORA 
+
+#**Paso 11. En este paso debes hacer el grafico de barras para las variables "ESTRATO" y "GR_SANGUINEO", para ello copia el codigo del paso 6 y las modificaciones pertinentes**
+
+
+
+#################################################################################################################################################################
+
+
+-----------  Agrega una linea de Texto y copia lo siguiente:---------------------TURNO PARA TRABAJO INDEPENDIENTES:  ESTO TE TOCA HACERLO AHORA 
+
+# **Paso 12. Ahora realice el diagrama de barras con las variables PROGRAMA, ESTRATO Y SEXO, según ese grafico, responda: Los Programas y Estratos donde habían únicamente del sexo Femenino con almenos tres estudiantes.
+
+
+#################################################################################################################################################################
+
+HAZ FINALIZADO LA ACTIVIDAD1 EL CUAL ES EL PRIMER ENTREGABLE DE LA SEMANA1 CON SU RESPECTIVO ANALISIS
+
+DEBES COMPARTIRLA AL CORREO juliohurtado210307@gmail.com
+
+
+#################################################################################
+Realizar la evaluación - Analisis de los Resultados Obtenidos en el forms:
+
+LINK :  https://forms.gle/t2VsScpH75q51iFT7
+CONTRASEÑA: ACTIVIDAD1
+
+
+#################################################################################
+###################################################################################
+
+FELICITACIONES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
